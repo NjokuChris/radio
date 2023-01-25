@@ -18,8 +18,18 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('schedule.index')" :active="request()->routeIs('schedule')">
+                    <x-nav-link :href="route('schedule.index')" :active="request()->routeIs('schedule.index')">
                         {{ __('schedule') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('schedule.index')" :active="request()->routeIs('schedule.create')">
+                        {{ __('Create schedule') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('station.index')" :active="request()->routeIs('station.index')">
+                        {{ __('Station') }}
                     </x-nav-link>
                 </div>
             </div>
