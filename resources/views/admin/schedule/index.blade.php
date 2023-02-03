@@ -53,8 +53,12 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>schedule</th>
-                                        <th>Status</th>
+                                        <th>Run in</th>
+                                        <th>Time</th>
+                                        <th>Action</th>
+                                        <th>Name</th>
+                                        <th>Week Days</th>
+                                        <th>Next Run</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -62,7 +66,11 @@
                                     @foreach ($schedule as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
-                                            <td>{{ $item->schedule }}</td>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->Time }}</td>
+                                            <td>{{ $item->FileName}}</td>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->Time }}</td>
                                             <td>{{ $item->status }}</td>
                                             
                                             <td>

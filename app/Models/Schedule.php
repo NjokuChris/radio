@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
-    protected $table = 'users';
     use HasFactory;
 }

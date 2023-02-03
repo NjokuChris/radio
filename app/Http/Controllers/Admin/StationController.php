@@ -30,7 +30,7 @@ class StationController extends Controller
     public function create()
     {
         $stations = station::paginate(5);
-        $units = unit::all();
+       // $units = unit::all();
         $locations = state::all();
         return view('Admin.stations.index', ['stations' => $stations, 'units' => $units, 'locations' => $locations]);
     }

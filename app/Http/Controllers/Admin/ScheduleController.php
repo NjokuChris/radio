@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\schedule;
 use App\Models\station;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ScheduleController extends Controller
 {
@@ -40,14 +41,19 @@ class ScheduleController extends Controller
     public function store(Request $request, schedule $schedule)
     {
         $request->validate([
-            'schedulename' => ['required'],
+          //  'schedulename' => ['required'],
 
         ]);
+        $filepath = Storage::path($request->FileName); 
+
+        //dd($filepath);
+
+        $schedule->station_id = $request->station_id;
         $schedule->EnabledEvent = $request->EnabledEvent;
         $schedule->UseDate = $request->UseDate;
         $schedule->AdditionalTime = $request->AdditionalTime;
         $schedule->EveryYear	= $request->EveryYear;
-        $schedule->FileName = $request->FileName;
+        $schedule->FileName = $filepath;
         $schedule->DelPrev = $request->DelPrev;
         $schedule->DoNotRunIfStopped = $request->DoNotRunIfStopped;
         $schedule->bRepeat = $request->bRepeat;
@@ -122,5 +128,76 @@ class ScheduleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getSchedule(Request $request)
+    {
+        $p=Schedule::where(['id'=>1])->first()->toArray();
+
+      /* // dd($p);
+
+        $result ="";
+        $arrayKeys = array_keys($p);
+      //  dd($arrayKeys);
+    for ($i = 0; $i < count($arrayKeys); $i++) {
+
+       $result .= $arrayKeys[$i] . '=' . '"' . $p[$arrayKeys[$i]]. '"'.' ';
+       //$result .= "{$arrayKeys[$i]}";
+    } */
+
+    $Password = "Christian7";
+    $ipaddress = "127.0.0.1:9000";
+
+    //$filepath = Storage::path($request->FileName); 
+
+    ///dd($filepath);
+
+    $Sun = $request->h0;
+    //dd($Sun);
+    $station_id = $request->station_id;
+    $Time = "2023-01-30 05:00:00";
+    $EnabledEvent = $request->EnabledEvent;
+   // dd($EnabledEvent);
+    $UseDate = $request->UseDate;
+    $AdditionalTime = $request->AdditionalTime;
+    $EveryYear	= $request->EveryYear;
+   // $FileName = $filepath;
+    $DelPrev = $request->DelPrev;
+    $DoNotRunIfStopped = $request->DoNotRunIfStopped;
+    $bRepeat = $request->bRepeat;
+    $nRepeatPer = $request->nRepeatPer;
+    $nRepeat = $request->nRepeat;
+    $RepeatLimit = $request->RepeatLimit;
+    $Shuffle = $request->Shuffle;
+    $PausePlaylist = $request->PausePlaylist;
+    $UseWeeks = $request->UseWeeks;
+    $Enqueue = $request->Enqueue;
+    $DelTaskAction = $request->DelTaskAction;
+    $DelTaskUseDate = $request->DelTaskUseDate;
+    $TaskName = $request->TaskName;
+    $ClearMainPlaylist = $request->ClearMainPlaylist;
+    $AddToPlaylistEnd = $request->AddToPlaylistEnd;
+    $UseDaysOfWeek = $request->UseDaysOfWeek;
+    $Hours = $request->Hours;
+    $Minutes = $request->Minutes;
+    $Seconds = $request->Seconds;
+    $TimeType = $request->TimeType;
+    $TaskNameAsTitle = $request->TaskNameAsTitle;
+    $Days = $request->Days;
+    $Weeks = $request->Weeks;
+    $DelTaskTime = "2023-01-31 00:00:00";
+      
+     // $value = '<item EnabledEvent=' . '"' . $EnabledEvent . '"' . ' UseDate=' . '"' . $UseDate . '"' . ' AdditionalTime=' . '"' . $AdditionalTime . '"' . ' EveryYear=' . '"' . $EveryYear . '"' . ' Imm="False" Above="False" FileName="C:\Users\CHRIS\Downloads\Kizz_Daniel_-_Rich_Till_I_Die_RTID_.mp3" MuteLev="50" DelPrev=' . '"' . $DelPrev . '"' . ' DoNotRunIfStopped=' . '"' . $DoNotRunIfStopped . '"' . ' bRepeat=' . '"' . $bRepeat . '"' . ' nRepeatPer="10" DoNotMarkAsScheduled="False" nRepeat="1" RepeatLimit="False" Shuffle=' . '"' . $Shuffle . '"' . ' PausePlaylist="False" UseWeeks=' . '"' . $UseWeeks . '"' . ' Enqueue=' . '"' . $Enqueue . '"' . ' DelTaskAction=' . '"' . $DelTaskAction . '"' . ' DelTaskUseDate=' . '"' . $DelTaskUseDate . '"' . ' DelTaskEveryYear="False" TaskName="" ClearMainPlaylist="False" AddToPlaylistEnd="False" UseDaysOfWeek="True" Hours="" Minutes="" Seconds="" IsDurationLimit="False" DurationLimit="0" TimeType="0" TaskNameAsTitle="False" ItemImageIndex="11" FontColor="15395562" BackColor="1644825" GroupName="" OverrideRelay="False" DTMFOn="False" DTMFString="" DTMFOnly="False" DTMFExitOn="False" DTMFExitString="" MaxTimeWaitOn="False" MaxTimeWaitSec="0" MaxTimeWaitAction="0" TimeToStart="" NextRunStr="" IntTimeToStart="2147483647" WasStartedLast="True" ManualStart="0" UseFillers="False" FillersSource="" FillersRecurse="True" FillerMaxAmount="120" FillerAllowMax="False" Id="NUUMIPQNNHFJBRRWMEKD" Days="1101111" Weeks="11110" Time="2023-01-28 05:00:00" DelTaskTime="2023-01-31 00:00:00"/>';
+      
+      $value = '<item EnabledEvent=' . '"' . $EnabledEvent . '"' . ' UseDate=' . '"' . $UseDate . '"' . ' AdditionalTime=' . '"' . $AdditionalTime . '"' . 'EveryYear=' . '"' . $EveryYear . '"' . ' Imm="False"Above="False"FileName="C:\Users\CHRIS\Downloads\Kizz_Daniel_-_Rich_Till_I_Die_RTID_.mp3"  MuteLev="50" DelPrev=' . '"' . $DelPrev . '"' . ' DoNotRunIfStopped=' . '"' . $DoNotRunIfStopped . '"' . ' bRepeat=' . '"' . $bRepeat . '"' . ' nRepeatPer="10" DoNotMarkAsScheduled="False" nRepeat="1" RepeatLimit="False" Shuffle=' . '"' . $Shuffle . '"' . ' PausePlaylist="False" UseWeeks=' . '"' . $UseWeeks . '"' . ' Enqueue=' . '"' . $Enqueue . '"' . ' DelTaskAction=' . '"' . $DelTaskAction . '"' . ' DelTaskUseDate="True" DelTaskEveryYear="False" TaskName=' . '"' . $TaskName . '"' . ' ClearMainPlaylist=' . '"' . $ClearMainPlaylist . '"' . ' AddToPlaylistEnd=' . '"' . $AddToPlaylistEnd . '"' . ' UseDaysOfWeek=' . '"' . $UseDaysOfWeek . '"' . ' Hours=' . '"' . $Hours . '"' . ' Minutes=' . '"' . $Minutes . '"' . ' Seconds=' . '"' . $Seconds . '"' . ' IsDurationLimit="False" DurationLimit="0" TimeType="0" TaskNameAsTitle=' . '"' . $TaskNameAsTitle . '"' . ' ItemImageIndex="11" FontColor="15395562" BackColor="1644825" GroupName="" OverrideRelay="False" DTMFOn="False" DTMFString="" DTMFOnly="False" DTMFExitOn="False" DTMFExitString="" MaxTimeWaitOn="False" MaxTimeWaitSec="0" MaxTimeWaitAction="0" TimeToStart="" NextRunStr="" IntTimeToStart="0.309821782408108" WasStartedLast="False" ManualStart="0" UseFillers="False" FillersSource="" FillersRecurse="True" FillerMaxAmount="120" FillerAllowMax="False" Id="" Days=' . '"' . $Days . '"' . ' Weeks=' . '"' . $Weeks . '"' . ' Time=' . '"' . $Time . '"' . ' DelTaskTime=' . '"' . $DelTaskTime . '/>';
+      $encode = urlencode($value);
+      //dd($p);
+      //dd($result);
+      
+        //dd($encode);
+
+       return redirect()->away('http://'.$ipaddress.'/?pass='.$Password.'&action=schedule&type=add&event='. $encode);
+
+        //return response($encode);
     }
 }

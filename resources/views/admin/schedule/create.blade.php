@@ -23,7 +23,8 @@
                                         </div>
                                         <!-- /.card-header -->
                                         <div class="card-body">
-                                            <form>
+                                        <form method="PUT" action="{{url('findSchedule')}}" enctype="multipart/form-data">
+                <!--<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
                                                 <div class="form-row align-items-center">
 
                                                     <div class="form-group col-md-4">
@@ -36,7 +37,7 @@
                                                     <div class="col-auto my-1">
                                                         <label class="mr-sm-3"
                                                             for="inlineFormCustomSelect">Station</label>
-                                                        <select class="custom-select mr-sm-3"
+                                                        <select class="custom-select mr-sm-3" name="station_id"
                                                             id="inlineFormCustomSelect">
                                                             @foreach ($stations as $s)
                                                             <option value="{{$s->id}}">{{$s->station_name}}</option>
@@ -134,7 +135,7 @@
                                                                                             <li>
                                                                                                 <label
                                                                                                     class="container">0
-                                                                                                    <input name="h0"
+                                                                                                    <input name="h0" value="1"
                                                                                                         type="checkbox">
                                                                                                     <span
                                                                                                         class="checkmark"></span>
@@ -492,35 +493,35 @@
                                                             <div class="row control-group">
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        value="" id="invalidCheck2" required>
+                                                                        value="" id="invalidCheck2">
                                                                     <label class="form-check-label" for="invalidCheck2">
                                                                         1st
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        value="" id="invalidCheck2" required>
+                                                                        value="" id="invalidCheck2">
                                                                     <label class="form-check-label" for="invalidCheck2">
                                                                         2nd
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        value="" id="invalidCheck2" required>
+                                                                        value="" id="invalidCheck2">
                                                                     <label class="form-check-label" for="invalidCheck2">
                                                                         3rd
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        value="" id="invalidCheck2" required>
+                                                                        value="" id="invalidCheck2" >
                                                                     <label class="form-check-label" for="invalidCheck2">
                                                                         4th
                                                                     </label>
                                                                 </div>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        value="" id="invalidCheck2" required>
+                                                                        value="" id="invalidCheck2" >
                                                                     <label class="form-check-label" for="invalidCheck2">
                                                                         Last
                                                                     </label>
@@ -688,7 +689,7 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <button type="button"
+                                                    <button type="submit"
                                                         style="position:relative; left:230px; top:2px; background-color:brown;"
                                                         class="btn btn-warning">Submit
                                                         Schedule</button>
