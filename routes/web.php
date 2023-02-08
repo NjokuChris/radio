@@ -33,5 +33,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('/admin/schedule', App\Http\Controllers\Admin\ScheduleController::class);
 Route::resource('/admin/station', App\Http\Controllers\Admin\StationController::class);
 
+Route::get('/schedule_show', [App\Http\Controllers\Admin\ScheduleController::class, 'ScheduleShow'])->name('schedule_show');
+
 
 require __DIR__.'/auth.php';

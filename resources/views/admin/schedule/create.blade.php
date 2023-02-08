@@ -38,7 +38,7 @@
                                                         <label class="mr-sm-3"
                                                             for="inlineFormCustomSelect">Station</label>
                                                         <select class="custom-select mr-sm-3" name="station_id"
-                                                            id="inlineFormCustomSelect">
+                                                            id="">
                                                             @foreach ($stations as $s)
                                                             <option value="{{$s->id}}">{{$s->station_name}}</option>
                                                             @endforeach

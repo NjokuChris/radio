@@ -15,10 +15,42 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function ScheduleShow(Request $request)
+    {
+        $station_id = $request->station_id;
+
+       // dd($station_id);
+
+        $station = station::where('id',$station_id)->get(['station_ip','password']);
+        
+        $ip_address = $station[0]['station_ip'];
+
+        $password = $station[0]['password'];
+
+       // dd($ip_address,$password);
+
+          $schedule = Schedule::all();
+       // return view('Admin.schedule.index', ['schedule' => $schedule]);
+       $xmlString = file_get_contents(url('http://'.$ip_address.':9000/?pass='.$password.'&action=schedule&type=list'));
+       $xmlObject = simplexml_load_string($xmlString);
+                   
+        $json = json_encode($xmlObject);
+        $phpArray = json_decode($json, true); 
+        
+        //$data = $phpArray->where('EnabledEvent', 'False');
+        //dd($data);
+        //dd($schedule);
+        //dd($phpArray['item'][0]['@attributes']['FileName']);
+        return view('Admin.schedule.index', ['phpArray' => $phpArray['item']]); 
+    }
+
     public function index()
     {
-        $schedule = Schedule::all();
-        return view('Admin.schedule.index', ['schedule' => $schedule]);
+        $arr['stations'] = station::all();
+       // $arr['bank'] = Accounts::where('acc_trans_type_id', 3)->get();
+       // $arr['company'] = company::where('status', 'Active')->get();
+        return view('admin.schedule.search')->with($arr);
+
     }
 
     /**

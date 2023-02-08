@@ -91,6 +91,7 @@
                                                         <th>ID</th>
                                                         <th>Station</th>
                                                         <th>Frequency</th>
+                                                        <th>IP Address</th>
                                                         <th>Address</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -101,6 +102,7 @@
                                                         <td>{{ $item->id }}</td>
                                                         <td>{{ $item->station_name }}</td>
                                                         <td>{{ $item->frequency}}</td>
+                                                        <td>{{ $item->station_ip}}</td>
                                                         <td>{{ $item->address }}</td>
 
                                                         <td>
