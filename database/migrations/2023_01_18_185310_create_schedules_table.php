@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('station_id');
+            $table->foreign('station_id')->references('id')->on('stations')->onDelete('cascade');
+
             $table->string('EnabledEvent')->default('False');
             $table->string('UseDate')->default('False');
             $table->string('AdditionalTime')->nullable();
@@ -77,8 +79,6 @@ return new class extends Migration
             $table->datetime('Time');
             $table->datetime('DelTaskTime');
             $table->timestamps();
-
-            $table->foreign('station_id')->references('id')->on('stations');
         });
     }
 
