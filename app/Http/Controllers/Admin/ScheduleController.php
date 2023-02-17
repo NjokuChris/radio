@@ -179,7 +179,7 @@ class ScheduleController extends Controller
         $Password = "Christian7";
         $ipaddress = "127.0.0.1:9000";
         $filepath = $request->file;
-        echo ($filepath->getClientOriginalName());
+       // echo ($filepath->getClientOriginalName());
 
         //$filepath = Storage::path($request->FileName); 
 

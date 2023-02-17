@@ -588,7 +588,7 @@
                                                                     </label>
                                                                 </div>
                                                                 <div class="controls bootstrap-timepicker">
-                                                                    <input type="number" class="datetime rptinpt" id=""
+                                                                    <input type="number" min="0" class="datetime rptinpt" id=""
                                                                         name="nRepeatPer" />
                                                                     <label class="form-check-label" for="invalidCheck2">
                                                                         min
